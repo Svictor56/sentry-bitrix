@@ -15,9 +15,9 @@
 
 Если у вас еще не установлен **Monolog**, установите его через Composer:
 
-`
+```php
 composer require monolog/monolog
-`
+```
 
 ---
 
@@ -25,9 +25,9 @@ composer require monolog/monolog
 
 Чтобы отправлять события в **Sentry**, вы должны установить **Sentry SDK** для PHP:
 
-`
+```php
 composer require sentry/sdk
-`
+```
 
 Этот пакет позволяет работать с **Sentry** и отправлять ошибки и события.
 
@@ -96,7 +96,7 @@ $logger->info('Это обычное информационное сообщен
 
 Пример интеграции с Битрикс:
 
-`
+```php
 use Bitrix\Main\EventManager;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -122,7 +122,7 @@ EventManager::getInstance()->addEventHandler("main", "OnEpilog", function() use 
         $logger->error('Ошибка: ' . $APPLICATION->GetException()->GetString(), ['exception' => $APPLICATION->GetException()]);
     }
 });
-`
+```
 
 ### Пояснение:
 
@@ -134,9 +134,9 @@ EventManager::getInstance()->addEventHandler("main", "OnEpilog", function() use 
 
 Чтобы избежать бесконечного роста файлов логов, мы использовали **RotatingFileHandler**. Этот обработчик автоматически удаляет старые логи, когда их количество превышает 7 файлов. Вы можете изменить это количество или настройки, как вам нужно.
 
-`
+```php
 $logger->pushHandler(new RotatingFileHandler($logFilePath, 7, Logger::ERROR, true, 10485760));
-`
+```
 
 Этот код будет создавать не более 7 файлов, каждый из которых будет иметь размер не более 10 МБ, после чего старые логи будут удаляться.
 
